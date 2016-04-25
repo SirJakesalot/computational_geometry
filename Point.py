@@ -1,11 +1,11 @@
 from math import hypot
 from random import randint
 class Point:
-    _maxX = (-10,10)
-    _maxY = (-10,10)
+    _rangeX = (-10,10)
+    _rangeY = (-10,10)
     def __init__(self, x = -100, y = -100):
-        self._x = randint(self._maxX[0], self._maxX[1]) if x == -100 else x
-        self._y = randint(self._maxY[0], self._maxY[1]) if y == -100 else y
+        self._x = randint(self._rangeX[0], self._rangeX[1]) if x == -100 else x
+        self._y = randint(self._rangeY[0], self._rangeY[1]) if y == -100 else y
 
     def __repr__(self):
         return "({0},{1})".format(self._x, self._y)

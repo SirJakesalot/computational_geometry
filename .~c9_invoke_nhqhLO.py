@@ -36,7 +36,7 @@ def plotLines(hull, pts, rangeX, rangeY):
     for i in range(0,len(hull)-1):
         plt.plot([hull[i].x(), hull[i+1].x()], [hull[i].y(), hull[i+1].y()])
     plt.plot([hull[len(hull)-1].x(), hull[0].x()], [hull[len(hull)-1].y(), hull[0].y()])
-    plt.axis([rangeX[0] - 1, rangeX[1] + 1, rangeY[0] - 1, rangeY[1] + 1])
+    plt.axis([rangeX[0], , -11, 11])
 
 # Single case
 #pts = getPointsFromTuples(test_case)
@@ -69,18 +69,16 @@ def run(input_text = "", number_of_points = 200, rangeX = (-10,10), rangeY = (-1
     
     # Create the figure
     fig = plt.figure(1)
+    plt.axhline(0, color='white')
+    plt.axvline(0, color='white')
     fig.suptitle('Convex Hull Algorithm', fontsize=14, fontweight='bold')
     
     ax1 = fig.add_subplot(211)
     ax1.set_title('Graham Scan, O(n log n), took {0} sec'.format(g_scan_total_time))
-    ax1.axhline(y=0, color='k')
-    ax1.axvline(x=0, color='k')
 
     plotLines(g_scan, pts, rangeX, rangeY)
     ax2 = fig.add_subplot(212)
     ax2.set_title('Jarvis March, O(nh), took {0} sec'.format(j_march_total_time))
-    ax2.axhline(y=0, color='k')
-    ax2.axvline(x=0, color='k')
     plotLines(j_march, pts, rangeX, rangeY)
     #plt.show()
     plt.savefig('/home/ubuntu/workspace/cs164/cs164/media/' + filepath)
