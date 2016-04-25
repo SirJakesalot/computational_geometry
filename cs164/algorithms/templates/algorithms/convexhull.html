@@ -1,0 +1,39 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<h1>Convex Hull Algorithm</h1>
+
+<form method="post" onsubmit='return validateForm()'>
+    {% csrf_token %}
+    <fieldset>
+        <legend>Custom Points</legend>
+        <input type="text" name="input_text" maxlength="200"/>
+    </fieldset>
+    <fieldset>
+        <legend>Random Points</legend>
+        Number of points <input type='number'  min='3' max='999' value='20' id="number_of_points" name="number_of_points"/>
+        Min x value <input type='number' min='-999' max='999' value='-10' id='min_x' name='min_x'/>
+        Max x value <input type='number' min='-999' max='999' value='10' id='max_x' name='max_x'/>
+        Min y value <input type='number' min='-999' max='999' value='-10' id='min_y' name='min_y'/>
+        Max y value <input type='number' min='-999' max='999' value='10' id='max_y' name='max_y'/>
+    </fieldset>
+    <input type="submit" value="Process"/>
+</form>
+
+<img src="{{ filepath }}">
+
+<script>
+    function validateForm() {
+        var rangeX = $('#min_x').val() < $('#max_x').val();
+        var rangeY = $('#min_y').val() < $('#max_y').val()
+        if (!rangeX) {
+            $('#min_x').css('border-color', 'red');
+            $('#max_x').css('border-color', 'red');
+        }
+        if (!rangeY) {
+            $('#min_y').css('border-color', 'red');
+            $('#max_y').css('border-color', 'red');
+        }
+        return rangeX && rangeY;
+        //^((?:\(\d+,\d+\),?)*)$
+    }
+</script>
